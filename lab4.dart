@@ -6,13 +6,10 @@
 
 class Point {
   num x, y;
-  Point(num x, num y) {
-    this.x = x;
-    this.y = y;
-  }
+  Point(this.x, this.y);
 
   printCoords() {
-    print("point.x: ${this.x}, point.y: ${this.y}");
+    print("point.x: ${x}, point.y: ${y}");
   }
 }
 
@@ -27,41 +24,28 @@ exe1() {
 
 class Point2 {
   num _x, _y;
-  Point2(num x, num y) {
-    this._x = x;
-    this._y = y;
-  }
+  Point2(this._x, this._y);
 
   printCoords() {
-    print("point.x: ${this._x}, point.y: ${this._y}");
+    print("point.x: ${_x}, point.y: ${_y}");
   }
 
-  getX() {
-    return this._x;
-  }
+  get x => _x;
+  set x(x) => _x = x;
 
-  setX(x) {
-    this._x = x;
-  }
-
-  getY() {
-    return this._y;
-  }
-
-  setY(y) {
-    this._y = y;
-  }
+  get y => _y;
+  set y(y) => _y = y;
 }
 
 exe2() {
   Point2 point = Point2(10, 20);
   point.printCoords();
 
-  point.setX(1);
-  point.setY(2);
+  point.x = 1;
+  point.y = 2;
 
-  print('x: ${point.getX()}');
-  print('y: ${point.getY()}');
+  print('x: ${point.x}');
+  print('y: ${point.y}');
 }
 
 // Napisz klasę Point3D dziedziczącą po klasie Punkt oraz zawierającą dodatkową,
@@ -71,21 +55,14 @@ exe2() {
 class Point3D extends Point2 {
   num _z;
 
-  Point3D(num x, num y, num z) : super(x, y) {
-    this._z = z;
-  }
+  Point3D(num x, num y, this._z) : super(x, y);
 
-  getZ() {
-    return this._z;
-  }
-
-  setZ(z) {
-    this._z = z;
-  }
+  get z => _z;
+  set z(z) => _z = z;
 
   @override
   printCoords() {
-    print("point.x: ${this._x}, point.y: ${this._y}, point.z: ${this._z}");
+    print("point.x: ${_x}, point.y: ${_y}, point.z: ${_z}");
   }
 }
 
@@ -93,13 +70,13 @@ exe3() {
   Point3D point = Point3D(10, 20, 30);
   point.printCoords();
 
-  point.setX(1);
-  point.setY(2);
-  point.setZ(3);
+  point.x = 1;
+  point.y = 2;
+  point.z = 3;
 
-  print('x: ${point.getX()}');
-  print('y: ${point.getY()}');
-  print('z: ${point.getZ()}');
+  print('x: ${point.x}');
+  print('y: ${point.y}');
+  print('z: ${point.z}');
 }
 
 // Napisz klasę Point4D dziedziczącą po utworzonych klasach Point oraz Point3D oraz
@@ -110,21 +87,13 @@ exe3() {
 class Point4D extends Point3D {
   num _t;
 
-  Point4D(num x, num y, num z, num t) : super(x, y, z) {
-    this._t = t;
-  }
+  Point4D(num x, num y, num z, this._t) : super(x, y, z);
 
-  getT() {
-    return this._t;
-  }
-
-  setT(t) {
-    this._t = t;
-  }
+  get t => _t;
+  set t(t) => _t = t;
 
   print4DCoords() {
-    print(
-        "point.x: ${this.getX()}, point.y: ${this.getY()}, point.z: ${this.getZ()}, point.t: ${this.getT()}");
+    print("point.x: ${x}, point.y: ${y}, point.z: ${z}, point.t: ${t}");
   }
 }
 
@@ -132,17 +101,20 @@ exe4() {
   Point4D point = Point4D(10, 20, 30, 40);
   point.print4DCoords();
 
-  point.setX(1);
-  point.setY(2);
-  point.setZ(3);
-  point.setT(4);
+  point.x = 1;
+  point.y = 2;
+  point.z = 3;
+  point.t = 4;
 
-  print('x: ${point.getX()}');
-  print('y: ${point.getY()}');
-  print('z: ${point.getZ()}');
-  print('t: ${point.getT()}');
+  print('x: ${point.z}');
+  print('y: ${point.y}');
+  print('z: ${point.z}');
+  print('t: ${point.t}');
 }
 
 void main() {
+  exe1();
+  exe2();
+  exe3();
   exe4();
 }
