@@ -77,25 +77,25 @@ exe4({String input = "Ile jest różnych znaków w treści tego zadania?"}) {
 // języku. Jeśli część wspólna zawiera przynajmniej 2 wspólne słowa (przy czym odrzucamy
 // liczby etc.), to zakładamy zgodność języka.
 
+bool isLetter(int codeUnit) {
+  return 65 <= codeUnit && codeUnit <= 123;
+}
+
+bool isWord(String input) {
+  for (var character in input.codeUnits) {
+    if (!isLetter(character)) {
+      return false;
+    }
+  }
+  return true;
+}
+
 exe5() {
   print("insert sentence:");
   String sentence1 = stdin.readLineSync();
 
   print("insert sentence:");
   String sentence2 = stdin.readLineSync();
-
-  bool isLetter(int codeUnit) {
-    return 65 <= codeUnit && codeUnit <= 123;
-  }
-
-  bool isWord(String input) {
-    for (var character in input.codeUnits) {
-      if (!isLetter(character)) {
-        return false;
-      }
-    }
-    return true;
-  }
 
   Set<String> setOfWordsFromSentence1 =
       Set.from((sentence1.split(' ').where(isWord)));
