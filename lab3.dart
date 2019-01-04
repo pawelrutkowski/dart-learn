@@ -112,9 +112,55 @@ exe4() {
   print('t: ${point.t}');
 }
 
+// additional: interfaces
+class Person {
+  final _name;
+  Person(this._name);
+  String greet(String who) => "$who: Person, $_name";
+}
+
+class Impostor implements Person {
+  get _name => '';
+  String greet(String who) => "$who: Impostor, $_name";
+}
+
+String greatBob(Person person) => person.greet('Bob');
+
+// mixins
+enum Color { red, green, blue }
+
+class A {
+  String getMessage() => 'A';
+}
+
+class B {
+  String getMessage() => 'B';
+}
+
+class P {
+  String getMessage() => 'P';
+}
+
+class AB extends P with A, B {}
+
+class BA extends P with B, A {}
+
 void main() {
   exe1();
   exe2();
   exe3();
   exe4();
+
+  print(greatBob((Person('Kathy'))));
+  print(greatBob((Impostor())));
+
+  String result = '';
+
+  AB ab = AB();
+  result += ab.getMessage();
+
+  BA ba = BA();
+  result += ba.getMessage();
+
+  print(result); // BA
 }
